@@ -35,15 +35,14 @@ const Login = () => {
         },
         {
           withCredentials: true,
-        },
+        }
       );
-      console.log(res);
 
       dispatch(addUser(res.data.user));
       navigate("/feed");
     } catch (err) {
       setError(
-        err?.response?.data?.message || err?.response?.data || "Login failed",
+        err?.response?.data?.message || err?.response?.data || "Login failed"
       );
     } finally {
       setLoading(false);
@@ -67,14 +66,14 @@ const Login = () => {
         },
         {
           withCredentials: true,
-        },
+        }
       );
-      console.log(res.data);
+
       dispatch(addUser(res.data.data));
       navigate("/profile");
     } catch (err) {
       setError(
-        err?.response?.data?.message || err?.response?.data || "Signup failed",
+        err?.response?.data?.message || err?.response?.data || "Signup failed"
       );
     } finally {
       setLoading(false);
@@ -82,9 +81,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-100 flex justify-center items-center px-4">
-      <div className="bg-base-300 w-4/12 max-w-md rounded-xl shadow-2xl py-6 px-8">
-        <h1 className="text-3xl font-bold text-center text-gray-400 mb-3">
+    <div className="min-h-screen bg-base-100 flex justify-center items-center px-4 py-8">
+      <div className="bg-base-300 w-full max-w-md sm:max-w-lg rounded-xl shadow-2xl py-6 px-5 sm:px-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-gray-400 mb-5">
           {isLogin ? "Login" : "Sign Up"}
         </h1>
 
@@ -92,11 +91,14 @@ const Login = () => {
           {!isLogin && (
             <>
               <div className="mb-4">
-                <label className="block text-gray-500 mb-2">First Name</label>
+                <label className="block text-sm sm:text-base text-gray-500 mb-2">
+                  First Name
+                </label>
+
                 <input
                   type="text"
                   placeholder="Enter First Name"
-                  className="w-full p-[10px] rounded-lg bg-gray-500 text-black outline-none border border-transparent focus:border-teal-500"
+                  className="w-full p-3 rounded-lg bg-gray-500 text-black outline-none border border-transparent focus:border-teal-500"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   required
@@ -104,11 +106,14 @@ const Login = () => {
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-500 mb-2">Last Name</label>
+                <label className="block text-sm sm:text-base text-gray-500 mb-2">
+                  Last Name
+                </label>
+
                 <input
                   type="text"
                   placeholder="Enter Last Name"
-                  className="w-full p-[10px] rounded-lg bg-gray-500 text-black outline-none border border-transparent focus:border-teal-500"
+                  className="w-full p-3 rounded-lg bg-gray-500 text-black outline-none border border-transparent focus:border-teal-500"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   required
@@ -118,11 +123,14 @@ const Login = () => {
           )}
 
           <div className="mb-4">
-            <label className="block text-gray-500 mb-2">Email</label>
+            <label className="block text-sm sm:text-base text-gray-500 mb-2">
+              Email
+            </label>
+
             <input
               type="email"
               placeholder="Enter Email"
-              className="w-full p-[10px] rounded-lg bg-gray-500 text-black outline-none border border-transparent focus:border-teal-500"
+              className="w-full p-3 rounded-lg bg-gray-500 text-black outline-none border border-transparent focus:border-teal-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -130,18 +138,21 @@ const Login = () => {
           </div>
 
           <div className="mb-3">
-            <label className="block text-gray-500 mb-2">Password</label>
+            <label className="block text-sm sm:text-base text-gray-500 mb-2">
+              Password
+            </label>
+
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter Password"
-              className="w-full p-[10px] rounded-lg bg-gray-500 text-black outline-none border border-transparent focus:border-teal-500"
+              className="w-full p-3 rounded-lg bg-gray-500 text-black outline-none border border-transparent focus:border-teal-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
 
-          <label className="flex items-center gap-2 text-gray-600 mb-5 cursor-pointer">
+          <label className="flex items-center gap-2 text-sm sm:text-base text-gray-600 mb-5 cursor-pointer">
             <input
               type="checkbox"
               checked={showPassword}
@@ -150,25 +161,33 @@ const Login = () => {
             Show Password
           </label>
 
-          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+          {error && (
+            <p className="text-red-500 text-center text-sm mb-4 break-words">
+              {error}
+            </p>
+          )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gray-700 hover:bg-gray-500 text-white py-2 rounded-lg text-lg font-semibold transition cursor-pointer"
+            className="w-full bg-gray-700 hover:bg-gray-500 text-white py-3 rounded-lg text-base sm:text-lg font-semibold transition cursor-pointer"
           >
             {loading ? "Please Wait..." : isLogin ? "Login" : "Sign Up"}
           </button>
 
           {isLogin && (
-            <p className="text-center mt-5 text-gray-500">
+            <p className="text-center mt-5 text-sm sm:text-base text-gray-500">
               Forgot{" "}
-              <span className="text-teal-500 cursor-pointer">Password?</span>
+              <span className="text-teal-500 cursor-pointer hover:underline">
+                Password?
+              </span>
             </p>
           )}
 
-          <p className="text-center mt-4 text-gray-500">
-            {isLogin ? "Don't have an account?" : "Already have an account?"}
+          <p className="text-center mt-4 text-sm sm:text-base text-gray-500">
+            {isLogin
+              ? "Don't have an account?"
+              : "Already have an account?"}
 
             <button
               type="button"

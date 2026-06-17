@@ -64,152 +64,163 @@ const Profile = () => {
   }
 
   return (
-    <>
-      {toast && (
-        <div className="toast toast-center">
-          <div className="alert alert-success">
-            <span>Profie Updated SuccessFully...</span>
-          </div>
+  <>
+    {toast && (
+      <div className="toast toast-top toast-center">
+        <div className="alert alert-success">
+          <span>Profile Updated SuccessFully...</span>
         </div>
-      )}
-      {user && (
-        <div className="flex justify-between m-auto w-1/2 ">
-          <div className="max-w-[400px] min-w-[400px] m-[2rem_auto] border border-[#ccc]  p-4 rounded-xl">
-            <div className="mb-4">
-              <label htmlFor="firstName" className="block font-semibold">
-                First Name
-              </label>
-              <input
-                className="w-full p-2 mt-1 border border-gray-300 rounded"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                id="firstName"
-                type="text"
-                placeholder="firstName"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="lastName" className="block font-semibold">
-                Last Name
-              </label>
-              <input
-                className="w-full p-2 mt-1 border border-gray-300 rounded"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                id="lastName"
-                type="text"
-                placeholder="lastName"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block font-semibold">
-                Eamil-Id
-              </label>
-              <input
-                disabled
-                className="w-full p-2 mt-1 border border-gray-300 rounded"
-                value={emailId}
-                onChange={(e) => setEmailId(e.target.value)}
-                id="email"
-                type="email"
-                placeholder="email"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="photoUrl" className="block font-semibold">
-                photoUrl
-              </label>
-              <input
-                className="w-full  p-2 mt-1 border border-gray-300 rounded"
-                value={photoUrl}
-                onChange={(e) => setPhotoUrl(e.target.value)}
-                id="photoUrl"
-                type="text"
-                placeholder="photoUrl"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="age" className="block font-semibold">
-                age
-              </label>
-              <input
-                className="w-full p-2 mt-1 border border-gray-300 rounded"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-                id="age"
-                type="text"
-                placeholder="age"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="gender" className="block font-semibold">
-                Gender
-              </label>
+      </div>
+    )}
 
-              <select
-                id="gender"
-                className="w-full p-2 mt-1 border border-gray-300 bg-gray-900 rounded"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              >
-                <option value="">Select gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="skills" className="block font-semibold">
-                Skills
-              </label>
-              <input
-                className="w-full p-2 mt-1 border border-gray-300 rounded"
-                value={skills}
-                onChange={(e) => setSkills(e.target.value)}
-                id="skills"
-                type="text"
-                placeholder="skills"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="about" className="block font-semibold">
-                About
-              </label>
-              <textarea
-                className="w-full p-2 mt-1 border border-gray-300 rounded"
-                value={about}
-                onChange={(e) => setAbout(e.target.value)}
-                id="about"
-                type="text"
-                placeholder="about"
-              ></textarea>
-            </div>
-            <button
-              className="w-full text-white cursor-pointer p-2 mt-1 rounded bg-blue-600 "
-              onClick={handleUpdate}
-            >
-              Save Profile
-            </button>
-          </div>
-          <div>
-            <UserCard
-              user={{
-                firstName,
-                lastName,
-                age,
-                gender,
-                about,
-                photoUrl,
-                skills,
-              }}
+    <div className="container mx-auto px-4 py-6">
+      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8">
+        
+        {/* Form */}
+        <div className="w-full max-w-md border border-[#ccc] p-4 rounded-xl">
+          <div className="mb-4">
+            <label htmlFor="firstName" className="block font-semibold">
+              First Name
+            </label>
+            <input
+              className="w-full p-2 mt-1 border border-gray-300 rounded"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              id="firstName"
+              type="text"
+              placeholder="firstName"
             />
           </div>
+
+          <div className="mb-4">
+            <label htmlFor="lastName" className="block font-semibold">
+              Last Name
+            </label>
+            <input
+              className="w-full p-2 mt-1 border border-gray-300 rounded"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              id="lastName"
+              type="text"
+              placeholder="lastName"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="email" className="block font-semibold">
+              Email-Id
+            </label>
+            <input
+              disabled
+              className="w-full p-2 mt-1 border border-gray-300 rounded"
+              value={emailId}
+              onChange={(e) => setEmailId(e.target.value)}
+              id="email"
+              type="email"
+              placeholder="email"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="photoUrl" className="block font-semibold">
+              Photo URL
+            </label>
+            <input
+              className="w-full p-2 mt-1 border border-gray-300 rounded"
+              value={photoUrl}
+              onChange={(e) => setPhotoUrl(e.target.value)}
+              id="photoUrl"
+              type="text"
+              placeholder="photoUrl"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="age" className="block font-semibold">
+              Age
+            </label>
+            <input
+              className="w-full p-2 mt-1 border border-gray-300 rounded"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              id="age"
+              type="text"
+              placeholder="age"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="gender" className="block font-semibold">
+              Gender
+            </label>
+
+            <select
+              id="gender"
+              className="w-full p-2 mt-1 border border-gray-300 bg-gray-900 rounded"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+            >
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="skills" className="block font-semibold">
+              Skills
+            </label>
+            <input
+              className="w-full p-2 mt-1 border border-gray-300 rounded"
+              value={skills}
+              onChange={(e) => setSkills(e.target.value)}
+              id="skills"
+              type="text"
+              placeholder="skills"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="about" className="block font-semibold">
+              About
+            </label>
+            <textarea
+              className="w-full p-2 mt-1 border border-gray-300 rounded resize-none"
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
+              id="about"
+              placeholder="about"
+              rows={4}
+            />
+          </div>
+
+          <button
+            className="w-full text-white cursor-pointer p-3 mt-1 rounded bg-blue-600"
+            onClick={handleUpdate}
+          >
+            Save Profile
+          </button>
         </div>
-      )}
-    </>
-  );
-};
+
+        {/* Preview Card */}
+        <div className="w-full max-w-sm flex justify-center">
+          <UserCard
+            user={{
+              firstName,
+              lastName,
+              age,
+              gender,
+              about,
+              photoUrl,
+              skills,
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  </>
+);
+}
 
 export default Profile;

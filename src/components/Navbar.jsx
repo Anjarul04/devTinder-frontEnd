@@ -9,9 +9,15 @@ const Navbar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLogout = async () => {
     try {
-      await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+      await axios.post(
+        BASE_URL + "/logout",
+        {},
+        { withCredentials: true }
+      );
+
       dispatch(removeUser());
       navigate("/login");
     } catch (err) {
@@ -19,55 +25,71 @@ const Navbar = () => {
     }
   };
 
-  return user &&  (
-    <div className="navbar bg-base-200 shadow-sm px-5">
-      <div className="flex-1">
-        <Link to="/feed" className="btn btn-ghost text-xl">
-          💻 devTinder
-        </Link>
-      </div>
-      <div className="flex gap-2">
+  return (
+    user && (
+      <div className="navbar bg-base-200 shadow-sm px-3 sm:px-5">
+        <div className="flex-1">
+          <Link
+            to="/feed"
+            className="btn btn-ghost text-lg sm:text-xl"
+          >
+            💻 devTinder
+          </Link>
+        </div>
+
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
             role="button"
-            className="btn flex w-[150px] justify-between btn-ghost btn-circle avatar"
+            className="btn btn-ghost flex items-center gap-2 px-2 sm:px-3"
           >
-            <p>Wellcome, {user.firstName}</p>
-            <div className="w-14 rounded-full">
+            <span className="hidden sm:block text-sm">
+              Welcome, {user.firstName}
+            </span>
+
+            <div className="w-10 sm:w-12 rounded-full overflow-hidden">
               <img
-                alt="Tailwind CSS Navbar component"
+                alt="profile"
                 src={
-                  user
-                    ? user.photoUrl
-                    : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  user?.photoUrl ||
+                  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                 }
               />
             </div>
           </div>
+
           <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/profile" className="justify-between">
+              <Link to="/profile">
                 Profile
                 <span className="badge">New</span>
               </Link>
             </li>
+
             <li>
-              <Link to="/user/connections">Connectins</Link>
+              <Link to="/user/connections">
+                Connections
+              </Link>
             </li>
+
             <li>
-              <Link to="/user/requests/received">Reqest Received</Link>
+              <Link to="/user/requests/received">
+                Request Received
+              </Link>
             </li>
+
             <li>
-              <a onClick={handleLogout}>Logout</a>
+              <button onClick={handleLogout}>
+                Logout
+              </button>
             </li>
           </ul>
         </div>
       </div>
-    </div>
+    )
   );
 };
 
